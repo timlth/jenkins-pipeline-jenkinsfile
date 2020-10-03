@@ -16,6 +16,8 @@ pipeline {
 				script{
 					def buildNumber = currentBuild.getNumber()
                     log.info("The current build number is " + buildNumber)
+                    log.warning("The current build number is " + buildNumber)
+                    log.error("The current build number is " + buildNumber)
 				}
 			}
 		}
