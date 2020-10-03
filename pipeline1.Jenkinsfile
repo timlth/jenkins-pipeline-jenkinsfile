@@ -1,5 +1,6 @@
 @Library('jenkins-pipeline-lib') _
 
+def printDebugMsg = false
 def buildStageReturn = 1
 
 pipeline {
@@ -15,8 +16,7 @@ pipeline {
 			steps{
 				script{
 					def buildNumber = currentBuild.getNumber()
-                    log.debug("The current build number is " + buildNumber, false)
-                    log.debug("The current build number is " + buildNumber, true)
+                    log.debug("The current build number is " + buildNumber, printDebugMsg)
                     log.info("The current build number is " + buildNumber)
                     log.warning("The current build number is " + buildNumber)
                     log.error("The current build number is " + buildNumber)
