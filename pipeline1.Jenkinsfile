@@ -1,6 +1,6 @@
 @Library('jenkins-pipeline-lib') _
 
-def printDebugMsg = false
+def printDebugMsg = true
 def buildStageReturn = 1
 
 pipeline {
