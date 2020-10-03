@@ -1,7 +1,5 @@
 @Library('jenkins-pipeline-lib') _
 
-//def buildStageReturn = 1
-
 pipeline {
     agent {
         node ("master")
@@ -23,8 +21,9 @@ pipeline {
             steps {
 				script {
 					echo "Build stage"
-					buildStageReturn = 0
-                    //def buildStageReturn = sh(script: 'ls; echo $?', returnStdout: true)
+                    def buildUser = sh(script: 'id', returnStdouSt: true)
+                    log.info("building os user is" + buildUser)
+                    
                     def buildStageReturn = sh(script: 'ls /root', returnStatus: true)
 					log.info("return code is " + buildStageReturn)
 				}
@@ -33,7 +32,7 @@ pipeline {
         stage("Test"){
 			when {
                 expression {
-                    !buildStageReturn //run if build stage succeeded
+                    buildStageReturn == 0 //run if build stage succeeded
                 }
             }
             steps {
