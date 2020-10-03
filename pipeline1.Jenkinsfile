@@ -15,6 +15,8 @@ pipeline {
 			steps{
 				script{
 					def buildNumber = currentBuild.getNumber()
+                    log.debug("The current build number is " + buildNumber, false)
+                    log.debug("The current build number is " + buildNumber, true)
                     log.info("The current build number is " + buildNumber)
                     log.warning("The current build number is " + buildNumber)
                     log.error("The current build number is " + buildNumber)
