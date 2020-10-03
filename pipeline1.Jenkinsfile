@@ -32,7 +32,7 @@ pipeline {
         stage("Test"){
 			when {
                 expression {
-                    buildStageReturn == 0 //run if build stage succeeded
+                    buildStageReturn == "0" //run if build stage succeeded
                 }
             }
             steps {
