@@ -21,9 +21,9 @@ pipeline {
             steps {
 				script {
 					echo "Build stage"
-                    def buildUser = sh(script: 'id', returnStdouSt: true)
+                    def buildUser = sh(script: 'id', returnStdout: true)
                     log.info("building os user is" + buildUser)
-                    
+
                     def buildStageReturn = sh(script: 'ls /root', returnStatus: true)
 					log.info("return code is " + buildStageReturn)
 				}
