@@ -24,7 +24,7 @@ pipeline {
 				script {
 					printstring.printstring('Build stage')
 					buildStageReturn = 0
-					//log.info("return code is " + buildStageReturn)
+					log.info("return code is " + buildStageReturn)
 
 				}
             }
