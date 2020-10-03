@@ -1,5 +1,7 @@
 @Library('jenkins-pipeline-lib') _
 
+def buildStageReturn = 1
+
 pipeline {
     agent {
         node ("master")
@@ -24,7 +26,7 @@ pipeline {
                     def buildUser = sh(script: 'id', returnStdout: true)
                     log.info("building os user is " + buildUser)
 
-                    def buildStageReturn = sh(script: 'pwd', returnStatus: true)
+                    buildStageReturn = sh(script: 'pwd', returnStatus: true)
 					log.info("return code is " + buildStageReturn)
 				}
             }
