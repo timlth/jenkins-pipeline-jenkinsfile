@@ -24,10 +24,9 @@ pipeline {
 				script {
 					echo "Build stage"
 					buildStageReturn = 0
-                    def buildStageReturn = sh(script: 'ls; echo $?', returnStdout: true)
+                    //def buildStageReturn = sh(script: 'ls; echo $?', returnStdout: true)
+                    def buildStageReturn = sh(script: 'ls; echo $?', returnStatus: true)
 					log.info("return code is " + buildStageReturn)
-                    sh 
-
 				}
             }
         }
