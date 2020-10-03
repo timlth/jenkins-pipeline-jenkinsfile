@@ -1,6 +1,6 @@
 @Library('jenkins-pipeline-lib') _
 
-def buildStageReturn = 1
+//def buildStageReturn = 1
 
 pipeline {
     agent {
@@ -15,16 +15,18 @@ pipeline {
 			steps{
 				script{
 					def buildNumber = currentBuild.getNumber()
-					echo "The current build number is ${buildNumber}"
+                    log.info("The current build number is " + buildNumber)
 				}
 			}
 		}
         stage("Build"){
             steps {
 				script {
-					printstring.printstring('Build stage')
+					echo "Build stage"
 					buildStageReturn = 0
+                    def buildStageReturn = sh(script: 'ls; echo $?', returnStdout: true)
 					log.info("return code is " + buildStageReturn)
+                    sh 
 
 				}
             }
@@ -32,21 +34,20 @@ pipeline {
         stage("Test"){
 			when {
                 expression {
-                    !buildStageReturn
+                    !buildStageReturn //run if build stage succeeded
                 }
             }
             steps {
-				echo "Build Sucess! Start Test stage"
+				echo "Build Sucess! Start Test Stage"
                 echo "Testing"
             }
         }
         stage("End"){
             steps {
-                echo "Start ending stage"
+                echo "End Stage"
             }
         }
     }
-    //123123
     post {
         always {
             echo "Always end"
